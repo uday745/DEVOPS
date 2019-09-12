@@ -1,0 +1,12 @@
+---
+ - hosts: nodes
+   become: yes
+   tasks:
+   - name: create new users
+     user:
+      name: "{{ item }}"
+      state: absent
+     loop:
+     - tej
+     - google
+~

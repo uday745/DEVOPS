@@ -1,0 +1,42 @@
+---
+ - hosts: nodes
+   become: yes
+   tasks:
+   - name: install the apache package
+     yum:
+      name: httpd
+      state: present
+     tags: httpd
+     notify:
+     - create and add the index.html file
+     - start the httpd service
+
+   - name: disabled firewall service
+     service:
+      name: firewalld
+      enabled: no
+      state: stopped
+     tags: firewalld
+
+   handlers:
+     - name: create and add the index.html file
+       template:
+        src: /etc/ansible/index.html
+        dest: /var/www/html/
+        owner: apache
+        group: apache
+        mode: 0644
+       tags: template
+
+     - name: start the httpd service
+       service:
+        name: httpd
+        enabled: yes
+        state: restarted
+       tags: start
+
+     - name: stop the httpd service
+       service:
+        name: httpd
+        state: stopped
+       tags: stop

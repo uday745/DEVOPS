@@ -1,0 +1,25 @@
+#!/bin/bash
+
+string1="uday"
+string2=""
+
+if [ -n "$string1"  ];then
+   echo "Length of the string is non-zero"
+else
+   echo "Length of the string is zero"
+fi
+
+if [ -z "$string2"  ];then
+   echo "Length of the string is zero"
+else
+   echo "Length of the string is non-zero"
+fi
+-----------------------------------------
+#!/bin/bash
+
+if [ $(id -u) = "0" ]
+then
+      echo "You are a root user"
+else
+      echo "you are a not super user $(id -u)"
+fi

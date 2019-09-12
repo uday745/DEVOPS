@@ -1,0 +1,72 @@
+#!/bin/bash
+
+i[0]=190
+i[1]=100
+i[2]=200
+i[3]=400
+
+echo ${i[0]}
+echo ${i[1]}
+echo ${i[2]}
+echo ${i[3]}
+--------------------------
+#!/bin/bash
+
+declare -a var
+
+var[0]="apple"
+var[1]="orange"
+var[2]="banna"
+var[3]="grape"
+
+echo ${var[0]}
+echo ${var[1]}
+echo ${var[2]}
+echo ${var[3]}
+------------------
+#!/bin/bash
+
+var=("grape" "orange" "carrot" "dal")
+echo ${var[0]}
+echo ${var[1]}
+echo ${var[2]}
+echo ${var[3]}
+-----------------
+#!/bin/bash
+
+var=([0]="grape" [1]= "orange" [2]= "carrot" [3]="dal" Last item)
+echo ${var[0]}
+echo ${var[1]}
+echo ${var[2]}
+echo ${var[3]}
+echo ${var[4]}
+------------------------
+#!/bin/bash
+
+echo "Please enter the ip separetd by space"
+
+read -a ip_list
+
+for i in ${ip_list[@]}
+do
+      echo "*****************************************"
+
+      ping -c 1 -w 3 $i 2>&1 >/dev/null
+      if [ $? -eq 0 ]
+      then
+              echo "host $i is live"
+      else
+
+              echo "host $i is down"
+      fi
+done
+--------------------------------------------------------
+#!/bin/bash
+
+output=$(cat /etc/passwd | awk -F':' '{print $1}')
+
+for i in $output[$@]
+do
+   echo "username is BSS_$i"
+done
+----------------------------------------------

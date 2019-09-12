@@ -1,0 +1,11 @@
+---
+ - hosts: nodes
+   become: yes
+   vars:
+    welcome_msg: 'hello world'
+   tasks:
+   - name: "copy file"
+     copy:
+      dest: /home/file.java
+      content: "{{welcome_msg}}"
+...

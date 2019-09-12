@@ -1,0 +1,8 @@
+---
+ - hosts: all
+   tasks:
+   - name: check the hostname
+     command: pwd
+     register: pwd
+
+   - debug: var=pwd.stdout

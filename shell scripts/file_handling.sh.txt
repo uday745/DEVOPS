@@ -1,0 +1,46 @@
+#!/bin/bash
+
+
+cat uday.log | while read LINE
+do
+   echo $LINE
+   echo "Hello world !"
+done
+---------------------
+#!/bin/bash
+
+
+while read LINE
+do
+   echo $LINE
+   echo "Hello world !"
+done < uday.log
+
+----------------------------
+#!/bin/bash
+
+myfile="uday.log"
+counter=2
+
+cat $myfile | while read LINE
+do
+     echo $LINE
+     counter=$((counter+1))
+     echo $counter
+done
+
+echo "Filename $myfile has $counter lines"
+-----------------------------------------
+#!/bin/bash
+
+counter=2
+
+while read LINE
+do
+     echo $LINE
+     counter=$((counter+1))
+     echo $counter
+done < uday.log
+
+echo "Filename $myfile has $counter lines"
+----------------------------------

@@ -1,0 +1,26 @@
+[ravi@workstation roles]$ knife cookbook list -a
+cron         6.1.1
+file_demo    0.2.0  0.1.0
+user_test    0.2.0  0.1.0
+web_server   0.8.0  0.7.0  0.6.0  0.5.0  0.4.0  0.3.0  0.2.0  0.1.0
+[ravi@workstation roles]$ knife environment list
+_default
+knife environment create development
+-------------
+{
+  "name": "development",
+  "description": "",
+  "cookbook_versions": {
+            "file_demo":">= 0.2.0",
+            "web_server":"<= 0.4.0
+  },
+  "json_class": "Chef::Environment",
+  "chef_type": "environment",
+  "default_attributes": {
+
+  },
+  "override_attributes": {
+         "httpd_port":"9090"
+  }
+}
+-----------------

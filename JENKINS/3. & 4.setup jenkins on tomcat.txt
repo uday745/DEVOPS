@@ -1,0 +1,23 @@
+setup jenkins on tomcat.
+
+- download tomcat 7
+ - download jenkins.war
+ - copy jenkins.war file into the webapps folder of the tomcat (/opt/apache-tomcat-7-xx/webapps/)
+ - start the tomcat. (./startup.sh)
+
+Configuration:
+-------------
+1)unlock the jenkins use admin password
+
+ - cat /home/ramki/.jenkins/secrets/AdminPasword
+
+2) install the required plugins.
+3)setup the user and password.
+4)login to the dashboard using username and password.
+
+setup gitbucket on tomcat.
+
+ - download tomcat 7
+ - download gitbucket.war
+ - copy gitbucket.war file into the webapps folder of the tomcat (/opt/apache-tomcat-7-xx/webapps/)
+ - start the tomcat. (./startup.sh)

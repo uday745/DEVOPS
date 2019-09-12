@@ -1,0 +1,2 @@
+This is new file on bug branch
+Discount offer is 50% to customer

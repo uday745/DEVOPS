@@ -1,0 +1,77 @@
+delete
+---
+ - hosts: nodes
+   become: yes
+   tasks:
+   - name: "file to delete"
+     file:
+      path: /home/passwd
+      state: absent
+...
+create
+---
+ - hosts: nodes
+   become: yes
+   tasks:
+   - name: "file to create and add"
+     copy:
+      dest: "/home/passwd"
+      content: |
+        The copy module is commonly used to copy a source file to a destination file.
+        But there is a parameter ‘content’ which can be used to create a file with the content.
+...
+empty file
+---
+ - hosts: nodes
+   become: yes
+   tasks:
+   - name: "create a empty file"
+     file:
+       dest: "/home/uday.txt"
+       state: touch
+...
+permissions
+---
+ - hosts: nodes
+   become: yes
+   tasks:
+   - name: "permissions"
+     file:
+       dest: "/home/uday.txt"
+       state: touch
+       mode: 0744
+       owner: root
+       group: root
+...
+multiple files
+---
+ - hosts: nodes
+   become: yes
+   tasks:
+   - name: multiple files
+     file:
+       dest: "{{ item }}"
+       state: touch
+       mode: 0664
+       owner: root
+       group: root
+     with_items:
+       - /home/init.txt
+       - /home/init2.txt
+...
+mutliple files and permissions
+---
+ - hosts: nodes
+   become: yes
+   tasks:
+   - name: multiple files
+     file:
+       dest: "{{ item.location }}"
+       state: touch
+       mode: "{{ item.mode }}"
+       owner: root
+       group: root
+     with_items:
+       - { location: '/home/init3.txt',mode: '655'}
+       - { location: '/home/init4.txt',mode: '744'}
+...

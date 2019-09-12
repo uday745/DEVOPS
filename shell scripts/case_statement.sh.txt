@@ -1,0 +1,23 @@
+#!/bin/bash
+
+echo "Enter a number,betwwen 1 to 4,"quit" to "exit""
+
+while [ 1 ]
+do
+        read NUM
+        case $NUM in
+                1) echo "number is one"
+                   ;;
+                2) echo "number is two"
+                   ;;
+                3) echo "number is three"
+                   ;;
+                4) echo "number is four"
+                   ;;
+                "quit") echo "number is one"
+                        break
+                        ;;
+                *) echo "oops it's not allowed"
+                   ;;
+         esac
+done

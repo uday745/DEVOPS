@@ -1,0 +1,54 @@
+#!/bin/bash
+
+for VAR in 1 2 3 4 5 a b c d
+do
+
+  echo $VAR
+
+done
+-----------------------------
+#!/bin/bash
+
+for i in {1..25}
+do
+
+  echo "welcome to $i times"
+  sleep 1
+done
+-------------------
+#!/bin/bash
+
+for i in {0..25..3}
+do
+
+  echo "welcome to $i times"
+  sleep 1
+done
+---------------------
+#!/bin/bash
+
+for i in $(seq 0 2 10)
+do
+
+  echo "welcome to $i times"
+  sleep 1
+done
+-------------------------
+#!/bin/bash
+
+for (( i=1 ; i<=5 ; i++ ))
+do
+
+  echo "welcome to $i times"
+  sleep 1
+done
+--------------------------
+#!/bin/bash
+
+for ((  ;  ;  ))
+do
+
+  echo "infinite loop times"
+  sleep 1
+done
+-----------------------

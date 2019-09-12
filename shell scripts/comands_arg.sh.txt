@@ -1,0 +1,28 @@
+#!/bin/bash
+####################
+# username: uday
+# gmail:guday93@gmail.com
+# role: SysEnginner
+######################
+
+echo "Total no. of arguments $#"
+echo "Script name $0"
+echo "Script name without leading path `basename $0`"
+echo "First argument is $1"
+echo "second argument is $2"
+echo "third argument is $3"
+
+echo "Total no. of arguments $@"
+echo "Total no. of arguments $*"
+---------------------------
+[root@Ansible-controller shell_scripts]# ./command_args.sh a b c d
+Total no. of arguments 4
+Script name ./command_args.sh
+Script name without leading path command_args.sh
+First argument is a
+second argument is b
+third argument is c
+Total no. of arguments a b c d
+Total no. of arguments a b c d
+[root@Ansible-controller shell_scripts]#
+

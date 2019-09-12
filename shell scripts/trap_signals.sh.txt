@@ -1,0 +1,59 @@
+#!/bin/bash
+
+trap 'echo "Hey,you are trying to kill me"' SIGINT
+
+
+while :
+do
+    echo "Hiuday!,How are you"
+    sleep 1
+done
+--------------------------------
+#!/bin/bash
+
+trap 'echo "Hey,you are trying to kill me"' SIGHUP
+
+
+while :
+do
+    echo "Hiuday!,How are you"
+    sleep 1
+done
+-----------------------------------
+#!/bin/bash
+
+function cleanup()
+{
+     echo "Received signals and cleanup files"
+     echo "Cleanup"
+     exit 1
+}
+
+trap 'cleanup' SIGHUP SIGINT SIGTRAP SIGILL
+
+
+while :
+do
+    echo "Hiuday!,How are you"
+    sleep 1
+done
+---------------------------------------
+#!/bin/bash
+
+function cleanup()
+{
+     echo "Received signals and cleanup files"
+     echo "Cleanup code"
+     echo "Received signals is $1"
+}
+
+trap 'cleanup SIGINT; exit 1' SIGINT
+trap 'cleanup SIGHUP; exit 1' SIGHUP
+trap 'cleanup SIGILLP; exit 1' SIGILL
+
+
+while :
+do
+    echo "Hiuday!,How are you"
+    sleep 1
+done

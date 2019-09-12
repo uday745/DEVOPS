@@ -1,0 +1,256 @@
+-------------------------------
+demo.sh
+-------------------------------
+#!/bin/bash
+
+mkdir test
+
+echo "test directory is created"
+
+touch test/uday{1..20}.txt
+
+echo "files created form 1 to 20 under test directory"
+
+ls  -la test/* # showing list of files
+rm  -rf test/* # deleting command
+---------------------------------
+#!/bin/bash
+
+echo "welcome to linux admintistration"
+sleep 10
+whoami
+---------------------------------------
+#!/bin/bash
+# READ  the user input
+
+echo "ENTER THE USERNAME"
+read name
+echo " Emtered the user name is $name "
+
+echo "ENTER the your native PLACE"
+read place
+echo "Native Place is $place"
+------------------------------------
+!#/bin/bash
+
+### print the total arguments ###########
+
+echo " Total arguments:"$#
+echo " All argument values: "$@
+
+
+### command arguments can be accessed as
+
+echo "First argument :" $1
+echo "Second argument :" $2
+echo "Third argument :" $3
+--------------------------------------------
+---------------------------------------------
+if statement
+---------------------------
+#!/bin/bash
+
+if [ -d "/home/uday/sh" ]
+then
+  echo "directory is avaliable"
+else
+  echo "directory is not avaliable"
+fi
+---------
+file
+----
+#!/bin/bash
+
+#/etc/passwd
+
+if [ -f "/etc/passwd" ]
+then
+#true
+
+echo  "yes the file is presenr  /etc/passwd"
+fi
+----------
+#!/bin/bash
+
+#/etc/passwd
+
+if [ -f "/etc/groups" ]
+then
+#true
+
+echo  "yes the file is presenr  /etc/passwd"
+#false
+else
+echo "file is not present"
+fi
+---------
+string
+--------
+#!/bin/bash
+
+
+RUNUSER=/bin/whoami
+
+if [ "$RUNUSER" == "root" ]
+then
+echo "you are a root user"
+
+else
+echo "you are not a root user"
+fi
+------------
+#!/bin/bash
+
+a=10
+b=10
+
+if [ $a == $b ];then
+echo " a and b  are equal"
+
+else
+echo "a and b are not equal"
+fi
+------
+NUMBER
+------
+#!/bin/bash
+
+# input = marks
+# output =result
+
+PER=$1
+
+if [ "$PER" -gt 75 ];then
+
+echo "Student result:first divison"
+
+elif [ "$PER" -gt 65 ];then
+echo "student result : second divison"
+
+elif [ "$PER" -gt 45 ];then
+echo "student result :third divison"
+
+elif [ "$PER" -gt  35 ];then
+echo "just pass"
+
+else
+   echo "student result :fail"
+fi
+--------------------------------
+if1.h
+----------
+#!/bin/bash
+# if statement
+# compare two arguments
+
+a=$1
+b=$2
+
+if [ $a -ge $b  ];then
+echo " a is greater then equal to b"
+
+else
+echo "a is not greater than equal to b "
+fi
+------------
+echo "Enter a value"
+read a
+echo "enter b value"
+read b
+
+if [ $a -ge $b  ];then
+echo " a is greater then equal to b"
+
+else
+echo "a is not greater than equal to b "
+fi
+-----------------
+logical - and
+-------------
+#!/bin/bash
+#Purpose: Find biggest Number among 4 digits
+
+echo -e "Please enter the value a"
+read -r a
+
+
+echo -e "Please enter the value b"
+read -r b
+
+
+echo -e "Please enter the value c"
+read -r c
+
+echo -e "Please enter the value d"
+read -r d
+
+
+if [ $a -gt $b -a $a -gt $c -a $a -gt $c  ];then
+echo "A =$a"
+
+elif [ $b -gt $a -a $b -gt $c -a $b -gt $d  ];then
+echo "B =$b"
+
+
+elif [ $c -gt $a -a $c -gt $b -a $c -gt $d  ];then
+echo "C =$c"
+
+else
+echo "D =$d"
+fi
+-------------------
+file
+----
+#!/bin/bash
+
+echo "Enter the file name"
+read File_name
+
+if [ -f $File_name  ];then
+echo " $File_name is exists "
+
+else
+echo " $File_name is not exits "
+fi
+----------------------
+#!/bin/bash
+
+echo "Enter the Directory name"
+read dir_name
+
+if [ -d $dir_name  ];then
+echo " $dir_name is exists "
+
+else
+echo " $dir_name is not exits "
+fi
+----------------------------
+#!/bin/bash
+
+echo "Enter the file name"
+read File_name
+
+if [ -r $File_name  ];then
+echo " Read permission is avaliable "
+
+else
+echo " REad permission is not avaliable "
+fi
+-------
+#!/bin/bash
+
+echo "Enter the marks A"
+read A
+
+echo "Enter the marks B"
+read B
+
+if [ $A -ge 70 -a $B -ge 56  ]
+#if [ $A -ge 70 ] & [ $B -ge 56]
+then
+echo " A and b is eligible   "
+else
+echo " A and b is not eligible "
+fi
+-----
+

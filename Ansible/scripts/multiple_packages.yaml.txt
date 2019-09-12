@@ -1,0 +1,25 @@
+---
+ - hosts: nodes
+   become: true
+   tasks:
+   - name: install multiple packages
+     yum:
+      name: "{{item}}"
+      state: present
+      update_cache: yes
+     with_items:
+     - wget
+     - git
+     - httpd
+...
+
+---
+ - hosts: nodes
+   become: true
+   tasks:
+   - name: install multiple packages
+     yum:
+      name: ['wget', 'git', 'httpd']
+      state: present
+      update_cache: yes
+...

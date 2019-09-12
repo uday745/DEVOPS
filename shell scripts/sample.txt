@@ -1,0 +1,14 @@
+#!/bin/bash
+
+read NAME
+
+echo "Hello $NAME  !,How are you"
+--------------------------------------
+#!/bin/bash
+
+read -a my_array
+
+for i in ${my_array[@]}
+do
+    echo "The number input is $i"
+done

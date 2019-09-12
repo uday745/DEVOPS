@@ -1,0 +1,13 @@
+#!/bin/bash
+
+
+count=3
+
+
+until [ $count -lt 0 ]
+do
+     echo "Hello world!"
+     count=$((count-1))
+     echo "Value of count number is $count"
+     sleep 1
+done

@@ -1,0 +1,214 @@
+package_name='httpd'
+service_name='httpd'
+
+package package_name do
+action :install
+end
+
+service service_name do
+action :enable
+end
+
+service service_name do
+action :start
+end
+
+file '/var/www/html/index.html' do
+owner 'apache'
+group 'apache'
+content '<html>
+<body>
+<h1>Heading 1</h1>
+<h2>Heading 2</h2>
+<h3>Heading 3</h3>
+<h4>Heading 4</h4>
+<h5>Heading 5</h5>
+<h6>Heading 6</h6>
+</body>
+</html>'
+action :create
+end
+-------------------------------------------
+package package_name do
+  action:install
+end
+
+service service_name do
+  action [:start, :enable]
+end
+
+file "#{dir_root}/index.html" do
+  owner 'apache'
+  group 'apache'
+  content'<!DOCTYPE html>
+<html>
+<body>
+<h2>Basic HTML Table</h2>
+<table style="width:100%">
+  <tr>
+    <th>Firstname</th>
+    <th>Lastname</th>
+    <th>Age</th>
+  </tr>
+  <tr>
+    <td>Jill</td>
+    <td>Smith</td>
+    <td>50</td>
+  </tr>
+  <tr>
+    <td>Eve</td>
+    <td>Jackson</td>
+    <td>94</td>
+  </tr>
+  <tr>
+    <td>John</td>
+    <td>Doe</td>
+    <td>80</td>
+  </tr>
+</table>
+</body>
+</html>'
+  mode '0644'
+  action:create
+end
+----------------------------------------------------
+----------------------------------------------------
+attributes
+---------------------------------------------------
+case node['platform']
+ when 'centos','rhel'
+  default['package_name']='httpd'
+  default['service_name']='httpd'
+  default['dir_root']='/var/www/html'
+ when 'debian','ubuntu'
+  default['package_name']='apache2'
+  default['service_name']='apache2'
+  default['dir_root']='/var/www'
+end
+---------------------
+package node['package_name'] do
+  action:install
+end
+
+service node['service_name'] do
+  action [:start, :enable]
+end
+
+file "#{node['dir_root']}/index.html" do
+  owner 'apache'
+  group 'apache'
+  content'<!DOCTYPE html>
+<html>
+<body>
+<h2>Basic HTML Table</h2>
+<table style="width:100%">
+  <tr>
+    <th>Firstname</th>
+    <th>Lastname</th>
+    <th>Age</th>
+  </tr>
+  <tr>
+    <td>Jill</td>
+    <td>Smith</td>
+    <td>50</td>
+  </tr>
+  <tr>
+    <td>Eve</td>
+    <td>Jackson</td>
+    <td>94</td>
+  </tr>
+  <tr>
+    <td>John</td>
+    <td>Doe</td>
+    <td>80</td>
+  </tr>
+</table>
+</body>
+</html>'
+  mode '0644'
+  action:create
+end
+-------------------------------
+templates-1:system.info.html.erb
+-------------------------------
+<html>
+<title>Template in chef</title>
+<bobdy>
+<h1>Welcome to chef_server</h1>
+<h2>My hostname is <%=node['hostname']%></h2>
+<h3>My server Platform : <%=node['platform']%></h3>
+<h4>Server total usage : <%=node['memory']['total']%></h4>
+</body>
+</html>
+-------------------------------------------
+template "#{node['dir_root']}/system.info.html" do
+  owner 'apache'
+  group 'apache'
+  mode '0644'
+  source 'system.info.html.erb'
+  action:create
+end
+---------------------------------------------
+----------------------------------------------
+vi recipe/default.rb
+-----------------------------
+package node['package_name'] do
+  action:install
+end
+
+template 'httpd.conf' do
+  path '/etc/httpd/conf/httpd.conf'
+  source 'httpd.conf.erb'
+  owner 'root'
+  group 'root'
+end
+
+service node['service_name'] do
+  action [:restart, :enable]
+end
+
+file "#{node['dir_root']}/index.html" do
+  owner 'apache'
+  group 'apache'
+  content'<!DOCTYPE html>
+<html>
+<body>
+<h2>Basic HTML Table</h2>
+<table style="width:100%">
+  <tr>
+    <th>Firstname</th>
+    <th>Lastname</th>
+    <th>Age</th>
+  </tr>
+  <tr>
+    <td>Jill</td>
+    <td>Smith</td>
+    <td>50</td>
+  </tr>
+</table>
+</body>
+</html>'
+  mode '0644'
+  action:create
+end
+------------------------------
+attributes -vi attributes/default.rb
+---------------
+default['httpd-port']='8080'
+---------------
+case node['platform']
+ when 'centos','rhel'
+  default['package_name']='httpd'
+  default['service_name']='httpd'
+  default['dir_root']='/var/www/html'
+  default['httpd-port']='8080'
+ when 'debian','ubuntu'
+  default['package_name']='apache2'
+  default['service_name']='apache2'
+  default['dir_root']='/var/www'
+end
+-------------------------------
+templates -vi templates/httpd.conf.erb
+-------------------------
+Listen <%=node['httpd-port']%>
+------------------------------------

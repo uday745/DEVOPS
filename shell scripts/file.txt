@@ -1,0 +1,40 @@
+#!/bin/bash
+
+filename="messages.log"
+if [ -e $filename  ]
+then
+    echo "$filename is exists"
+else
+    echo "$filename is not exists"
+fi
+
+if [ -f $filename ];then
+    echo "$filename is exists and it is a regular file"
+else
+    echo "$filename is not exists and it is not a regular file"
+fi
+
+filename="uday"
+if [ -b $filename ]
+then
+     echo "$filename is a block device file"
+else
+     echo "$filename is not a block device file"
+fi
+
+filename="uday1"
+if [ -c $filename ]
+then
+     echo "$filename is a character device file"
+else
+     echo "$filename is not a character device file"
+fi
+
+filename="zebra_logs"
+if [ -d $filename ]
+then
+     echo "$filename is a directory"
+else
+     echo "$filename is  not a directory"
+fi
+~

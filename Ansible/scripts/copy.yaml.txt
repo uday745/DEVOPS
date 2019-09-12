@@ -1,0 +1,9 @@
+---
+ - hosts: nodes
+   become: yes
+   tasks:
+   - name: "copy file"
+     copy:
+      src : /etc/passwd
+      dest: /home/passwd
+...

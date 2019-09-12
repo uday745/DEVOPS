@@ -1,0 +1,27 @@
+chef - node:
+------------
+[root@web_server ~]# openssl passwd -1 -salt danger uday0286
+$1$danger$kBu0jEU9anaxnvuZgm3lI1
+[root@web_server ~]# openssl passwd -apr1 -salt danger uday0286
+$apr1$danger$1DW4s1q2Te/OQ.GHxDlph.
+-----------------------------------
+-----------------------------------
+export EDITOR=/usr/bin/vi
+---------------------------------------
+worstation
+------------------------------
+vi user_test/recipe/default.rb
+------------------------------
+group 'chefGroup' do
+  action:create
+end
+
+user 'uday123' do
+  password '$apr1$danger$1DW4s1q2Te/OQ.GHxDlph.'
+  group 'chefGroup'
+  home '/home/udayy'
+  manage_home true
+  shell '/bin/bash'
+  action:create
+end
+------------------------------

@@ -1,0 +1,30 @@
+---
+ - hosts: nodes
+   become: yes
+   tasks:
+   - name: nginx repo file creation
+     template:
+      src: /etc/ansible/nginx.repo
+      dest: /etc/yum.repos.d/
+     tags: repo
+
+   - name: install nginx
+     yum:
+      name: nginx
+      state: present
+     tags: install
+
+   - name: service started
+     service:
+      name: nginx
+      enabled: yes
+      state: started
+     tags: start
+------------------------------------------
+nginx.repo
+-----------------
+[nginx]
+name=nginx repo
+baseurl=http://nginx.org/packages/mainline/centos/7/$basearch/
+gpgcheck=0
+enabled=1

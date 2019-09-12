@@ -1,0 +1,15 @@
+#!/bin/bash
+
+### individual arguments line by line
+for i in "$@"
+do
+   echo $i
+done
+
+## All arguments in one line
+
+for j in "$*"
+do
+   echo $j
+done
+~

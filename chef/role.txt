@@ -1,0 +1,35 @@
+$ knife role list
+$ knife role create base_role
+ERROR: RuntimeError: Please set EDITOR environment variable. See https://docs.chef.io/knife_setup.html for details.
+----------------------------------------
+-----------------------------------
+export EDITOR=/usr/bin/vi
+---------------------------------------
+$ knife role create base_role
+---------------------------
+ "chef_type": "role",
+  "run_list": [
+    "recipe[file_demo]",
+    "recipe[cron]"
+  ]
+-------------------------
+$ knife role edit base_role
+$ knife role show base_role -F json
+$ knife role show base_role -F json > roles/base_role.json
+$ cd roles
+$ ls
+base_role.json  starter.rb
+$ cat base_role.json
+$ cp base_role.json web_role.json
+$ vi web_role.json
+$ knife role list
+$ knife role from file web_role.json
+Updated Role base_role
+$ knife role list
+base_role
+$ knife role delete from web_role.json
+$ knife node edit web_server.node
+-----------------------------
+"role[base_role]"
+------------------
+

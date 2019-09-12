@@ -1,0 +1,45 @@
+chef - node:
+------------
+# openssl passwd -1 -salt danger uday0286
+$1$danger$kBu0jEU9anaxnvuZgm3lI1
+# openssl passwd -apr1 -salt danger uday0286
+$apr1$danger$1DW4s1q2Te/OQ.GHxDlph.
+-----------------------------------
+-----------------------------------
+export EDITOR=/usr/bin/vi
+---------------------------------------
+worstation
+------------------------------
+[ravi@workstation cookbooks]$ knife data bag list
+[ravi@workstation cookbooks]$ knife data bag create uday23_secrets
+Created data_bag[uday23_secrets]
+[ravi@workstation cookbooks]$ knife data bag list
+uday23_secrets
+[ravi@workstation cookbooks]$ vi uday_passwd.json
+---------------------------------------------------
+{
+  "id":"uday23",
+  "password":"$1$danger$kBu0jEU9anaxnvuZgm3lI1"
+}
+----------------------------------------------------
+[ravi@workstation cookbooks]$ knife data bag from file uday23_secrets uday_passwd.json
+Updated data_bag_item[uday23_secrets::uday23]
+[ravi@workstation cookbooks]$ knife data bag show uday23_secrets
+uday23
+-------------------------------------------
+vi user_test/recipe/default.rb
+-------------------------------
+user_pass=data_bag_item('uday23_secrets','uday23')
+
+user 'uday23' do
+  password user_pass['password']
+  group 'chefGroup'
+  home '/home/uday23'
+  manage_home true
+  shell '/bin/bash'
+  action:create
+end
+-------------------------------------------
+
+
+

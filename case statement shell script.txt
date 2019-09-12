@@ -1,0 +1,61 @@
+The Case Statement
+--------------------
+-------------------
+The case statement is used to execute statements based on specific values. 
+Often used in place of an if statement, if there are a large number of conditions.
+-----
+case $var in
+      val1)
+ 
+            statements;;
+ 
+      val2)
+ 
+            statements;;
+ 
+      *)
+ 
+            statements;;
+ 
+esac
+--------------
+#! /bin/bash
+case $# in
+ 
+4)
+ 
+echo "Ready to process four files. " ;;
+ 
+3)
+ 
+echo "Ready to process three files." ;;
+ 
+2)
+ 
+echo "Ready to process two files." ;;
+ 
+1)
+ 
+echo  "Ready to process one file." ;;
+ 
+*)
+ 
+echo "Invalid number of filenames provided, " ;;
+ 
+esac
+-------------------------------
+#! /bin/bash
+ 
+vehicle=$1
+ 
+case $vehicle in
+    "car" )
+        echo "Rent of $vehicle is 100 dollar" ;;
+    "van" )
+        echo "Rent of $vehicle is 80 dollar" ;;
+    "bicycle" )
+        echo "Rent of $vehicle is 5 dollar" ;;
+    "truck" )
+        echo "Rent of $vehicle is 150 dollar" ;;
+    * )
+        echo "Unknown vehicle" ;;
