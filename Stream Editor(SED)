@@ -55,3 +55,30 @@ blue green
 blue
 blue
 
+$ cat smp | sort
+blue
+blue
+blue blue blue
+blue green
+blue is danger color blue blue
+$ cat smp | sort -r
+blue is danger color blue blue
+blue green
+blue blue blue
+blue
+blue
+
+$ cat smp | sort | tr [a-z] [A-Z]
+BLUE
+BLUE
+BLUE BLUE BLUE
+BLUE GREEN
+BLUE IS DANGER COLOR BLUE BLUE
+
+$ grep -i  Blue smp
+blue is danger color blue blue
+blue blue blue
+blue green
+blue
+blue
+
