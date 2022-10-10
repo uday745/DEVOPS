@@ -1,0 +1,57 @@
+# Commands
+
+To display the 25th line number data only
+$ sed -n "25p" /etc/passwd
+tcpdump:x:72:72::/:/sbin/nologin
+
+To Display the upto 10th and 15 th number data
+$ sed -n "10,15p" /etc/passwd
+operator:x:11:0:operator:/root:/sbin/nologin
+games:x:12:100:games:/usr/games:/sbin/nologin
+ftp:x:14:50:FTP User:/var/ftp:/sbin/nologin
+nobody:x:99:99:Nobody:/:/sbin/nologin
+systemd-network:x:192:192:systemd Network Management:/:/sbin/nologin
+dbus:x:81:81:System message bus:/:/sbin/nologin
+
+
+vi smp
+-------
+Red is danger color red red
+red red red
+red green
+red
+red
+
+It will replace the first occurence of experssion
+# sed 's/red/blue/' smp                                       s--string
+blue is danger color red red
+blue red red
+blue green
+blue
+blue
+
+It will replace the second occurence of experssion
+# sed 's/red/blue/2' smp
+red is danger color blue red
+red blue red
+red green
+red
+red
+
+I want to replace the all expressions               g--globally
+# sed 's/red/blue/g' smp
+blue is danger color blue blue
+blue blue blue
+blue green
+blue
+blue
+
+I want to replace the all expressions and also save the file
+# sed -i 's/red/blue/g' smp               i-- insert
+# cat smp
+blue is danger color blue blue
+blue blue blue
+blue green
+blue
+blue
+
